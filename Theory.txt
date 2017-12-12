@@ -3,7 +3,8 @@ Routing Indepth:
     -> Routes[], path ,fullPath, redirectTo
     -> ngOnInit() -> route.subscribe to (params: Params) and get params[key]
     -> physical routing
-        -> routerLink, routerLinkActive, routerLinkOptions
+        -> routerLink, routerLinkActive, [routerLinkActiveOptions]="{exact: true}"
+        -> / or no /, physical vs relative path.
         -> queryParams, queryParamsHandling {'merge', 'preserve'}
         -> fragments
     -> Gaurds
