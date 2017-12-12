@@ -1,0 +1,31 @@
+Routing Indepth:
+    -> RouterModule.
+    -> Routes[], path ,fullPath, redirectTo
+    -> ngOnInit() -> route.subscribe to (params: Params) and get params[key]
+    -> physical routing
+        -> routerLink, routerLinkActive, routerLinkOptions
+        -> queryParams, queryParamsHandling {'merge', 'preserve'}
+        -> fragments
+    -> Gaurds
+        -> CanActivate;
+            -> canActivate : Gaurd in Routes[] object.
+        -> ActivatedRouteSnapshot;
+        -> RouterStateSnapshot;
+        -> returns Observable<boolean> || Promise<boolean> || boolean;
+        -> CanDeactivate
+            -> interface CanComponentDeactivate
+                ->  canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
+            -> Gaurd implements CanDeactivate<interface>, component should also implement it 
+                -> canDeactivate(component: CanComponentDeactivate,
+                                    currentRoute: ActivatedRouteSnapshot,
+                                    currentState: RouterStateSnapshot,
+                                    nextState?: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+                        return component.canDeactivate();
+                    }
+            -> canDeactivate: [CanDeactivateGuard] in router and add to providers in module.
+        -> Resolve - dynamic data.
+            -> export class classname implements Resolve<object interface> 
+            -> subscribe to route data
+            -> resolve: {property : classname} in router
+            -> add class to app module providers
+        -> 
