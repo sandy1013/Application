@@ -5,10 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { ListHoverDirective } from './dashboard/list-hover.directive';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [HomeComponent, DashboardComponent, AboutComponent, ListHoverDirective]
 })

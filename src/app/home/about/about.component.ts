@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+  @ViewChild('navbar') navbar: ElementRef;
+  toggleMenu: boolean;
 
-  constructor() { }
+  constructor(private renderer: Renderer2,
+  private router: Router) { 
+    this.toggleMenu = false;
+  }
 
   ngOnInit() {
   }
-
 }

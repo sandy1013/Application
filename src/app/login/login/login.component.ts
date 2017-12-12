@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoginService } from '../../shared/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,14 @@ import { LoginService } from '../../shared/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+  private router: Router) { }
 
   ngOnInit() {
   }
 
   onLogin() {
     this.loginService.isUserLoggedIn = true;
+    this.router.navigate(['/home']);
   }
 }
