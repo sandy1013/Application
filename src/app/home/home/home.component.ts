@@ -3,7 +3,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   @ViewChild('navbar') navbar: ElementRef;
