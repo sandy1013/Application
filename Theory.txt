@@ -29,4 +29,108 @@ Routing Indepth:
             -> subscribe to route data
             -> resolve: {property : classname} in router
             -> add class to app module providers
-        -> 
+-> Modules
+    -> Application Structuring.
+
+-> RXJS
+    -> Reactive Programming
+        -> UI Events
+        -> Http Requests
+        -> filesystem
+        -> arrays
+        -> Memory/Cache
+    -> Stream
+        -> sequence of ongoing eventes ordered in time
+        -> emits value, error or complete signal
+        -> use observables are used to watch this stream, odervers to subscribe - unlimited number of observers
+            -> reactive js gives a long list of operators which allow us to filter, select, transform, combine and compose objects.
+        -> RX - reactive extensions
+            -> JAVA - RxJava
+            -> C# - UniRX
+            -> Scala - RxScala
+            -> Ruby - Rx.rb 
+            -> Python - RxPY 
+            -> Swift: RxSwift 
+            -> list goes on...
+        -> in Javascript
+            ->  create a observable to watch a perticular evenet
+                const obj = Rx.Observable.fromEvent(btn, 'click');
+                Obj.subscribe((value) => {
+
+                }, (error) => {
+
+                }, (complete) => {
+
+                })
+            -> fromPromise
+    -> Angular is build on top of RXJS
+    -> implementation
+        -> Observable subscribe, unsubscribe and retry.
+        -> vs Promise.
+        -> success, error, complete states
+            -> .subscribe(success => {
+
+            }, error => {
+
+            }, complete => {
+
+            });
+        -> custom Observable
+            -> import { Observable } from 'rxjs/Observable'; import 'rxjs/RX'; // second import optional but better if included.
+            
+            -> const numbers = Observable.interval(1000); // genrate numbers every second
+                numbers.subscribe((number: number) => {
+                    console.log(number);
+                });
+
+            -> const observer = Observable.create((observer: observer) => {
+                observer.next('first pacakage');
+
+                setTimeout(() => {
+                    observer.next('second pacakage');
+                }, 2000);
+
+                setTimeout(() => {
+                    observer.error('third pacakage');
+                }, 4000);
+
+                setTimeout(() => {
+                    observer.completed('third pacakage');
+                }, 6000);
+            });
+            observer.subscribe((data: string) => {
+                console.log(data);
+            }, (error: string) => {
+                console.log(error);
+            },(completed: string) => {
+                console.log(completed);
+            });
+
+            -> observables keep running in backgound always destroy in ngOnDestroy using unsubscribe; 
+                -> import { Subscription } from 'rxjs/Subscription';
+                    observer: Subscription;
+                    this.observer = Observable.create();
+                    ngOnDestroy
+                        ->  this.observer.unsubscribe();
+            
+            -> Subject 
+                -> similar to Observable
+                -> observable and observer at the same time.
+                -> import { Subject } from 'rxjs/Subject';
+                    userActivate: Subject;
+
+                -> service.userActivate.next(value); // sends a data pacakage to requesting service. // Observable here
+                -> service..userActivate.subscribe((value: Type) => { // Observer here
+                    console.log(value);
+                }); 
+                -> always UNSUBSCRIBE!!!!
+                -> best for cross component communication.
+            
+            -> Go through rxjs for other functionality, user rxjs/RX to unlock all features
+            -> map, switchMap, take, merge, mergeMap
+-> Pipes
+    -> Transform UI values.
+        -> uppercase, lowercase etc.
+        -> understanding async pipe.
+        -> custom pipes
+        -> pure, impure pipes
