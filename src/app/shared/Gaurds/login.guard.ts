@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { LoginService } from '../services/login.service';
 import { CanActivateChild } from '@angular/router/src/interfaces';
@@ -7,7 +7,7 @@ import { CanActivateChild } from '@angular/router/src/interfaces';
 @Injectable()
 export class LoginGuard implements CanActivate, CanActivateChild {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -17,7 +17,8 @@ export class LoginGuard implements CanActivate, CanActivateChild {
       if(this.loginService.isUserLoggedIn) {
         return true;
       } else {
-        return false
+        this.router.navigate(['/login']);
+        return false;
       }
        
   }
